@@ -49,9 +49,14 @@ sap.ui.define([
 
                 var oViewModel =  this.getView().getModel("LeaveRequestModel"); 
                 var oTable = this.getView().byId("mainTable");
-                var sPath = oEvent.getParameter("listItem").getBindingContext("LeaveRequestModel").getPath();
+               // var sPath = oEvent.getParameter("listItem").getBindingContext("LeaveRequestModel").getPath();
                 var selectedRow= oTable.getModel("LeaveRequestModel").getProperty(sPath);
-                var oModel = this.getModel();
+                var oModel = this.getOwnerComponent().getModel();
+                oViewModel.setProperty("/SelectedRow", selectedRow);
+                var sPath = oModel.createKey("/LeaveRequestSet", {
+                  Pern: oViewModel.getProperty("/SelectedRow/PlanId"), 
+                   
+                  });
                 var a = 1;
               },
 

@@ -3,7 +3,71 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content >
-          
+           <Table mode="None" id="mainTable" items="{LeaveRequestModel>/LeaveRequestList}" itemPress="onTableItemPress" selectionChange="onMasterSelectionChange">
+        <headerToolbar>
+            <Toolbar>
+                <Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+                <!-- <Button id="DenemeButton" press="onDenemeButtonPress" text="Deneme"/> -->
+            </Toolbar>
+        </headerToolbar>
+        <columns>
+            <!-- <Column>
+                <Text text="{i18n>ApprovelStatus}"/>
+            </Column> -->
+            <!-- <Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>ApproverNumber}"/>
+            </Column> -->
+            <Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>EmployeeNumber}"/>
+            </Column>
+			  <Column>
+                <Text text="{i18n>EmpFullName}"/>
+            </Column>
+            <!-- <Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>QuotaAvailable}"/>
+            </Column>
+            <Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>QuotaPlanned}"/>
+            </Column>
+            <Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>RemainingLeaveEntitlement}"/>
+            </Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+                <Text text="{i18n>QuotaAccrualBeginDate}"/>
+            </Column>
+           -->
+        </columns>
+        <items>
+            <ColumnListItem type="Active">
+                <cells>
+                    <!-- <Text text="{oApproveModel>ApprovalStatus}"/> -->
+                    <!-- <Text text="{oApproveModel>ApproverNumber}"/> -->
+                    <Text text="{LeaveRequestModel>Pernr}"/>
+					<Text text="{LeaveRequestModel>Ename}"/>
+                    <!-- <Text text="{oApproveModel>QuotaAvailable}"/> -->
+                    <!-- <Text text="{path:'oApproveModel>/QuotaAvailable', formatter:'.formatNumber'}"/> -->
+
+                    <!-- <Text text="{oApproveModel>QuotaPlanned}"/>
+                    <Text text="{oApproveModel>RemainingLeaveEntitlement}"/> -->
+                 <!-- <Text text="{
+    path: 'oApproveModel>QuotaAccrualBeginDate',
+    formatter: '.formatDate'
+}" />
+				 -->
+
+
+
+ 
+	
+                    
+                    <!-- <HBox>
+                        <Button icon="sap-icon://accept" class="sapUiTinyMarginEnd" type="Accept" press="onApprove"/>
+                        <Button icon="sap-icon://decline" class="sapUiTinyMarginEnd" type="Reject" press="onReject"/>
+                    </HBox> -->
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
         </content>
     </Page>
 </mvc:View>

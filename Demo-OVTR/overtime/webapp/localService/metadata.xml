@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZHCM_UX_OVTR_SRV" xml:lang="tr" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="OverTimeEmployee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personel no."/>
+                <Property Name="Ename" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Çlşn/bşv.adı"/>
+                <NavigationProperty Name="Request" Relationship="ZHCM_UX_OVTR_SRV.EmployeeToRequest" FromRole="FromRole_EmployeeToRequest" ToRole="ToRole_EmployeeToRequest"/>
+            </EntityType>
+            <EntityType Name="OverTimeRequest" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                    <PropertyRef Name="Datum"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personel no."/>
+                <Property Name="Datum" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Tarih"/>
+                <Property Name="Beguz" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Başlangıç saati"/>
+                <Property Name="Enduz" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Bitiş saati"/>
+                <Property Name="Anzhl" Type="Edm.Decimal" Precision="7" Scale="2" sap:unicode="false" sap:label="Sayı/birim"/>
+                <Property Name="Expln" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Text"/>
+                <Property Name="Crdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Yaratma tarihi"/>
+                <Property Name="Crtim" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Değişiklik sa."/>
+                <Property Name="Crnam" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Yaratan"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Dğşk.tarihi"/>
+                <Property Name="Aetim" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Değişiklik sa."/>
+                <Property Name="Aenam" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Değiştiren"/>
+                <Property Name="Ename" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Çlşn/bşv.adı"/>
+                <Property Name="Planx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Orgex" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tanım"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="İleti tipi"/>
+                <Property Name="Message" Type="Edm.String" MaxLength="220" sap:unicode="false" sap:label="İleti metni"/>
+            </EntityType>
+            <Association Name="EmployeeToRequest" sap:content-version="1">
+                <End Type="ZHCM_UX_OVTR_SRV.OverTimeEmployee" Multiplicity="1" Role="FromRole_EmployeeToRequest"/>
+                <End Type="ZHCM_UX_OVTR_SRV.OverTimeRequest" Multiplicity="*" Role="ToRole_EmployeeToRequest"/>
+            </Association>
+            <EntityContainer Name="ZHCM_UX_OVTR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="OverTimeEmployeeSet" EntityType="ZHCM_UX_OVTR_SRV.OverTimeEmployee" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OverTimeRequestSet" EntityType="ZHCM_UX_OVTR_SRV.OverTimeRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="EmployeeToRequestSet" Association="ZHCM_UX_OVTR_SRV.EmployeeToRequest" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OverTimeEmployeeSet" Role="FromRole_EmployeeToRequest"/>
+                    <End EntitySet="OverTimeRequestSet" Role="ToRole_EmployeeToRequest"/>
+                </AssociationSet>
+                <FunctionImport Name="CalculateOverTime" ReturnType="Collection(ZHCM_UX_OVTR_SRV.OverTimeRequest)" EntitySet="OverTimeRequestSet" m:HttpMethod="GET">
+                    <Parameter Name="Beguz" Type="Edm.Time" Mode="In" Precision="0"/>
+                    <Parameter Name="Enduz" Type="Edm.Time" Mode="In" Precision="0"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="http://smod-erp-dev1.westeurope.cloudapp.azure.com:8010/sap/opu/odata/sap/ZHCM_UX_OVTR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://smod-erp-dev1.westeurope.cloudapp.azure.com:8010/sap/opu/odata/sap/ZHCM_UX_OVTR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

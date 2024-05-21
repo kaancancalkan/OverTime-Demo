@@ -49,15 +49,60 @@ sap.ui.define([
 
                 var oViewModel =  this.getView().getModel("LeaveRequestModel"); 
                 var oTable = this.getView().byId("mainTable");
-               // var sPath = oEvent.getParameter("listItem").getBindingContext("LeaveRequestModel").getPath();
+                var sPath = oEvent.getParameter("listItem").getBindingContext("LeaveRequestModel").getPath();
                 var selectedRow= oTable.getModel("LeaveRequestModel").getProperty(sPath);
                 var oModel = this.getOwnerComponent().getModel();
                 oViewModel.setProperty("/SelectedRow", selectedRow);
-                var sPath = oModel.createKey("/LeaveRequestSet", {
-                  Pern: oViewModel.getProperty("/SelectedRow/PlanId"), 
+                var sPath2 = oModel.createKey("/OverTimeEmployeeSet", {
+                  Pernr: oViewModel.getProperty("/SelectedRow/Pernr"), 
                    
                   });
                 var a = 1;
+                var that = this ;
+                oModel.read(sPath2, {
+                  urlParameters: {  
+                   
+                    $expand: "Request",
+                      
+                  },
+                  success: function(oData, oResponse) {
+                    
+                      // Okuma başarılı olduğunda yapılacak işlemler
+                       console.log("Veriler başarıyla okundu:", oData)
+                      
+                       oViewModel.setProperty("/MasterDetail", oData.Request
+                       );
+                       
+                       var OverTimeRequestSet = oViewModel.getProperty("/MasterDetail/results")
+                       var selectedRow= oTable.getModel("LeaveRequestModel").getProperty(sPath);
+                      // oPlanned.forEach((element) => {
+                      //   if (element.LeaveStatus === "PAP" || element.LeaveStatus === "PRJ") {
+                      //     element.LeaveStatus =  this.getText("Planned",[]);
+                      //   // element.LeaveStatus = "Planlandı";
+                      //     oApproveDialogModel.setProperty("/MasterDetail/results/LeaveStatus", element.LeaveStatus);
+                      //   }
+                      // });
+                       // var PlannedStatus = oPlannedDay.LeaveType
+        
+                     //  if(PlannedDay = "PL"){
+                     //   oApproveDialogModel.setProperty("/MasterDetail/Results/PlannedDay", "Planned")
+                    //   }
+                      
+                    // console.log(oApproveDialogModel.getProperty("/MasterDetail"));
+                   // oLeaveDialog.open();
+                   //var OverTimeRequestSet = oData.Request.results;
+                   for(var i = 0; i < OverTimeRequestSet.length; i++){
+                    if(OverTimeRequestSet[i].Pernr === selectedRow.Pernr ){
+                     oViewModel.setProperty("/SelectedRowRequest", oData.Request.results[i]
+                   );
+                  };
+                }
+                }.bind(this),
+                  error: function(oError) {
+                      // Okuma sırasında bir hata oluştuğunda yapılacak işlemler
+                      console.log("Okuma hatası:", oError);
+                  }
+              });
               },
 
         

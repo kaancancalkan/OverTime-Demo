@@ -1,0 +1,35 @@
+<c:FragmentDefinition
+ xmlns="sap.m"
+ xmlns:c="sap.ui.core"
+    xmlns:core="sap.ui.core"
+>
+
+<Dialog
+    closeOnNavigation="true"
+   
+    icon="sap-icon://account"
+   
+    title="Leave Request"
+    id="RequestDialog"
+    
+>
+<Table items="{LeaveRequestModel>/SelectedRowRequest}" id="RequestTable">
+                <columns>
+                    <Column>
+                        <Text text="Employee Number" />
+                    </Column>
+                 
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                <Text text="{LeaveRequestModel>Pernr}" />
+                           
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+   
+</Dialog>
+ 
+</c:FragmentDefinition>

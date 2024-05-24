@@ -1,6 +1,6 @@
 <mvc:View controllerName="employee.overtime.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"  xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content >
            <Table mode="None" id="mainTable" items="{LeaveRequestModel>/LeaveRequestList}" itemPress="onTableItemPress" selectionChange="onMasterSelectionChange">
@@ -68,7 +68,7 @@
             </ColumnListItem>
         </items>
     </Table>
-    
+    <core:Fragment fragmentName="employee.overtime.fragments.Request" type="XML" />
         </content>
     </Page>
 </mvc:View>

@@ -96,6 +96,8 @@ sap.ui.define([
                      oViewModel.setProperty("/SelectedRowRequest", oData.Request.results[i]
                    );
                   };
+                  var oRequestDialog = this.getView().byId("RequestDialog");
+                  oRequestDialog.open();
                 }
                 }.bind(this),
                   error: function(oError) {

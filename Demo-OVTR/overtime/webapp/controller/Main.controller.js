@@ -104,8 +104,13 @@ sap.ui.define([
                       // Okuma sırasında bir hata oluştuğunda yapılacak işlemler
                       console.log("Okuma hatası:", oError);
                   }
+              
               });
               },
+              onCloseDialog: function() {
+                var oRequestDialog = this.getView().byId("RequestDialog");
+                oRequestDialog.close();
+              }
 
         
         });

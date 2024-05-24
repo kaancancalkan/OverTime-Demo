@@ -5,7 +5,7 @@
 >
 
 <Dialog
-    closeOnNavigation="true"
+  
    
     icon="sap-icon://account"
    
@@ -13,10 +13,23 @@
     id="RequestDialog"
     
 >
+ <customHeader>
+        <Bar>
+            <contentMiddle>
+                <Title text="Leave Request" />
+            </contentMiddle>
+            <contentRight>
+                <Button
+                    icon="sap-icon://decline"
+                    press="onCloseDialog"
+                />
+            </contentRight>
+        </Bar>
+    </customHeader>
 <Table items="{LeaveRequestModel>/SelectedRowRequest}" id="RequestTable">
                 <columns>
                     <Column>
-                        <Text text="Employee Number" />
+                       <Text text="Employee Number" />
                     </Column>
                  
                 </columns>

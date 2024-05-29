@@ -1,11 +1,12 @@
 sap.ui.define([
-	"sap/ui/base/ManagedObject"
+	"sap/ui/base/ManagedObject",
+  "sap/ui/core/mvc/Controller"
 ], function(
-	ManagedObject
+	ManagedObject,Controller
 ) {
 	"use strict";
 
-	return ManagedObject.extend("employee.overtime.controller.Base.Controller", {
+	return Controller.extend("employee.overtime.controller.BaseController", {
         onInit: function () {},
         /**
          * Convenience method for accessing the router.

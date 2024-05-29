@@ -1,13 +1,14 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "./BaseController"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,BaseController) {
         "use strict";
 
-        return Controller.extend("employee.overtime.controller.Main", {
+        return BaseController.extend("employee.overtime.controller.Main", {
             onInit: function () {
                 var oLeaveRequestModel = new sap.ui.model.json.JSONModel({
                     LeaveRequestList: []
@@ -48,6 +49,7 @@ sap.ui.define([
                 console.log("a");
 
                 var oViewModel =  this.getView().getModel("LeaveRequestModel"); 
+                var oLeaveRequestModel = this.getModel("LeaveRequestModel");
                 var oTable = this.getView().byId("mainTable");
                 var sPath = oEvent.getParameter("listItem").getBindingContext("LeaveRequestModel").getPath();
                 var selectedRow= oTable.getModel("LeaveRequestModel").getProperty(sPath);

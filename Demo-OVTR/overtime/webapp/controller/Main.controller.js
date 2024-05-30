@@ -11,11 +11,12 @@ sap.ui.define([
         return BaseController.extend("employee.overtime.controller.Main", {
             onInit: function () {
                 var oLeaveRequestModel = new sap.ui.model.json.JSONModel({
-                    LeaveRequestList: [],
-                    SelectedRowRequest: []
+                    // LeaveRequestList: [],
+                    // SelectedRowRequest: []
                 });
               
                 this.getOwnerComponent().setModel(oLeaveRequestModel, "LeaveRequestModel");
+                var that = this;
                 var oModel = this.getOwnerComponent().getModel();
                 oModel.read("/OverTimeEmployeeSet", {
                     success: function (oData, oResponse) {
@@ -25,10 +26,13 @@ sap.ui.define([
                         index++;
                         // console.log(oModel)
                         // console.log(oData)
+                   
                       });
-                     // var oViewModel =  this.getView().getModel("LeaveRequestModel");
                       
-                      oLeaveRequestModel.setProperty("/LeaveRequestList", oData.results);
+                      
+                      var oViewModel = that.getView().getModel("LeaveRequestModel");
+
+                      oViewModel.setProperty("/LeaveRequestList", oData.results);
                     //   var ApprovalStatus = oApproveModel.getProperty(
                     //     "/ApprovalSet/0/ApprovelStatus"
                     //   );
@@ -119,7 +123,15 @@ sap.ui.define([
                var oViewModel =  this.getView().getModel("LeaveRequestModel");
                 oViewModel.setProperty("/SelectedRowRequest", []
               );
-              }
+              
+              },
+              formatDate: function(date) {
+                if (!date) {
+                    return "";
+                }
+                var dateFormatter = sap.ui.core.format.DateFormat.getDateInstance({pattern: "dd/MM/yyyy"});
+                return dateFormatter.format(date);
+            }
         
         });
     });

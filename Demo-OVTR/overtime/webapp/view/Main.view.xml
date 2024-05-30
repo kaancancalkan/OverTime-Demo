@@ -1,29 +1,34 @@
 <mvc:View controllerName="employee.overtime.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m"  xmlns:core="sap.ui.core">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content >
-           <Table mode="None" id="mainTable" items="{LeaveRequestModel>/LeaveRequestList}" itemPress="onTableItemPress" selectionChange="onMasterSelectionChange">
-        <headerToolbar>
-            <Toolbar>
-                <Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-                <!-- <Button id="DenemeButton" press="onDenemeButtonPress" text="Deneme"/> -->
-            </Toolbar>
-        </headerToolbar>
-        <columns>
-            <!-- <Column>
+            <Table mode="None" id="mainTable" items="{LeaveRequestModel>/LeaveRequestList}" itemPress="onTableItemPress" selectionChange="onMasterSelectionChange">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+                        <!-- <Button id="DenemeButton" press="onDenemeButtonPress" text="Deneme"/> -->
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <!-- <Column>
                 <Text text="{i18n>ApprovelStatus}"/>
             </Column> -->
-            <!-- <Column demandPopin="true" minScreenWidth="Tablet">
+                    <!-- <Column demandPopin="true" minScreenWidth="Tablet">
                 <Text text="{i18n>ApproverNumber}"/>
             </Column> -->
-            <Column demandPopin="true" minScreenWidth="Tablet">
-                <Text text="{i18n>EmployeeNumber}"/>
-            </Column>
-			  <Column>
-                <Text text="{i18n>EmpFullName}"/>
-            </Column>
-            <!-- <Column demandPopin="true" minScreenWidth="Tablet">
+                    <Column demandPopin="true" minScreenWidth="Tablet">
+                        <Text text="{i18n>EmployeeNumber}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>EmpFullName}"/>
+                    </Column>
+
+                    <Column>
+                        <Text text="{i18n>EmpPosition}"/>
+                    </Column>
+                    <!-- <Column demandPopin="true" minScreenWidth="Tablet">
                 <Text text="{i18n>QuotaAvailable}"/>
             </Column>
             <Column demandPopin="true" minScreenWidth="Tablet">
@@ -36,20 +41,23 @@
                 <Text text="{i18n>QuotaAccrualBeginDate}"/>
             </Column>
            -->
-        </columns>
-        <items>
-            <ColumnListItem type="Active">
-                <cells>
-                    <!-- <Text text="{oApproveModel>ApprovalStatus}"/> -->
-                    <!-- <Text text="{oApproveModel>ApproverNumber}"/> -->
-                    <Text text="{LeaveRequestModel>Pernr}"/>
-					<Text text="{LeaveRequestModel>Ename}"/>
-                    <!-- <Text text="{oApproveModel>QuotaAvailable}"/> -->
-                    <!-- <Text text="{path:'oApproveModel>/QuotaAvailable', formatter:'.formatNumber'}"/> -->
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <!-- <Text text="{oApproveModel>ApprovalStatus}"/> -->
+                            <!-- <Text text="{oApproveModel>ApproverNumber}"/> -->
+                            <Text text="{LeaveRequestModel>Pernr}"/>
+                            <Text text="{LeaveRequestModel>Ename}"/>
+                            <Text text="{LeaveRequestModel>Planx}"/>
 
-                    <!-- <Text text="{oApproveModel>QuotaPlanned}"/>
+                    
+                                                                            <!-- <Text text="{oApproveModel>QuotaAvailable}"/> -->
+                            <!-- <Text text="{path:'oApproveModel>/QuotaAvailable', formatter:'.formatNumber'}"/> -->
+
+                            <!-- <Text text="{oApproveModel>QuotaPlanned}"/>
                     <Text text="{oApproveModel>RemainingLeaveEntitlement}"/> -->
-                 <!-- <Text text="{
+                            <!-- <Text text="{
     path: 'oApproveModel>QuotaAccrualBeginDate',
     formatter: '.formatDate'
 }" />
@@ -57,18 +65,20 @@
 
 
 
- 
-	
-                    
-                    <!-- <HBox>
+
+
+
+                            <!-- <HBox>
                         <Button icon="sap-icon://accept" class="sapUiTinyMarginEnd" type="Accept" press="onApprove"/>
                         <Button icon="sap-icon://decline" class="sapUiTinyMarginEnd" type="Reject" press="onReject"/>
                     </HBox> -->
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
-    <core:Fragment fragmentName="employee.overtime.fragments.Request" type="XML" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+
+            <core:Fragment fragmentName="employee.overtime.fragments.Request" type="XML" />
         </content>
     </Page>
 </mvc:View>

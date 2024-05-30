@@ -26,7 +26,7 @@
             </contentRight>
         </Bar>
     </customHeader>
-<Table items="{LeaveRequestModel>/SelectedRowRequest}" id="RequestTable">
+<Table  id="RequestTable">
     <columns>
         <Column>
             <Text text="Employee Number" />
@@ -42,9 +42,15 @@
     <items>
         <ColumnListItem>
             <cells>
-                <Text text="{LeaveRequestModel>Pernr}" />
-                <Text text="{LeaveRequestModel>Datum}" />
-                <Text text="{LeaveRequestModel>Expln}" />
+                <Text text="{LeaveRequestModel>/SelectedRowRequest/Pernr}" />
+                
+ <Text text="{
+path: 'LeaveRequestModel>/SelectedRowRequest/Datum',
+formatter: '.formatDate'
+}"/>
+
+               
+                <Text text="{LeaveRequestModel>/SelectedRowRequest/Expln}"  />
                 <!-- Add other cells as necessary -->
             </cells>
         </ColumnListItem>

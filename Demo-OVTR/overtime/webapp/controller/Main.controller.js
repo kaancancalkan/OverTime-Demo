@@ -11,7 +11,8 @@ sap.ui.define([
         return BaseController.extend("employee.overtime.controller.Main", {
             onInit: function () {
                 var oLeaveRequestModel = new sap.ui.model.json.JSONModel({
-                    LeaveRequestList: []
+                    LeaveRequestList: [],
+                    SelectedRowRequest: []
                 });
               
                 this.getOwnerComponent().setModel(oLeaveRequestModel, "LeaveRequestModel");
@@ -25,6 +26,7 @@ sap.ui.define([
                         // console.log(oModel)
                         // console.log(oData)
                       });
+                     // var oViewModel =  this.getView().getModel("LeaveRequestModel");
                       
                       oLeaveRequestModel.setProperty("/LeaveRequestList", oData.results);
                     //   var ApprovalStatus = oApproveModel.getProperty(
@@ -72,7 +74,7 @@ sap.ui.define([
                       // Okuma başarılı olduğunda yapılacak işlemler
                        console.log("Veriler başarıyla okundu:", oData)
                       
-                       oViewModel.setProperty("/MasterDetail", oData.Request
+                       oLeaveRequestModel.setProperty("/MasterDetail", oData.Request
                        );
                        
                        var OverTimeRequestSet = oViewModel.getProperty("/MasterDetail/results")
@@ -112,8 +114,12 @@ sap.ui.define([
               onCloseDialog: function() {
                 var oRequestDialog = this.getView().byId("RequestDialog");
                 oRequestDialog.close();
+              },
+              onDialogAfterClose: function() {
+               var oViewModel =  this.getView().getModel("LeaveRequestModel");
+                oViewModel.setProperty("/SelectedRowRequest", []
+              );
               }
-
         
         });
     });

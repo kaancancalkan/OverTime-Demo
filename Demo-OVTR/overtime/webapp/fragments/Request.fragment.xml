@@ -11,7 +11,7 @@
    
     title="Leave Request"
     id="RequestDialog"
-    
+    afterClose="onDialogAfterClose"
 >
  <customHeader>
         <Bar>
@@ -27,22 +27,29 @@
         </Bar>
     </customHeader>
 <Table items="{LeaveRequestModel>/SelectedRowRequest}" id="RequestTable">
-                <columns>
-                    <Column>
-                       <Text text="Employee Number" />
-                    </Column>
-                 
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
+    <columns>
+        <Column>
+            <Text text="Employee Number" />
+        </Column>
+        <Column>
+            <Text text="Date" />
+        </Column>
+        <Column>
+            <Text text="Explanation" />
+        </Column>
+        <!-- Add other columns as necessary -->
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
                 <Text text="{LeaveRequestModel>Pernr}" />
-                           
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-   
+                <Text text="{LeaveRequestModel>Datum}" />
+                <Text text="{LeaveRequestModel>Expln}" />
+                <!-- Add other cells as necessary -->
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
 </Dialog>
  
 </c:FragmentDefinition>
